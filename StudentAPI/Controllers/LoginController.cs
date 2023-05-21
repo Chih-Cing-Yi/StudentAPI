@@ -75,7 +75,7 @@ namespace StudentAPI.Controllers
                 UserDTO userDTO = new UserDTO()
                 {
                     UserName = user.UserName,
-                    JWT = "Bearer" + GenerateJwtToken(user.UserName),
+                    JWT = "Bearer " + GenerateJwtToken(user.UserName),
                 };
                 return Ok(userDTO);//200
             }

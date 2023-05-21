@@ -5,11 +5,13 @@ using StudentAPI.DTO;
 using StudentAPI.Models;
 using Dapper;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StudentAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StudentController : ControllerBase
     {
         //連接上下文類別
