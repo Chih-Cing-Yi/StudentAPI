@@ -79,6 +79,7 @@ namespace StudentAPI.Controllers
             student.StudentId = model.StudentId;
             student.StudentName = model.StudentName;
             student.StudentAddress = model.StudentAddress;
+            student.StudentAge= model.StudentAge;
             student.ClassId = model.ClassId;
 
             await _db.SaveChangesAsync();
