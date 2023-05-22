@@ -20,11 +20,13 @@ public partial class WebAPIContext : DbContext
 
     public virtual DbSet<CourseD> CourseDs { get; set; }
 
-    public virtual DbSet<CourseM> CourseMs { get; set; }
-
     public virtual DbSet<Student> Students { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=2023WebAPI;Persist Security Info=True;User ID=sa;pwd=1qaz@wsx;MultipleActiveResultSets=true ;TrustServerCertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,21 +39,11 @@ public partial class WebAPIContext : DbContext
 
         modelBuilder.Entity<CourseD>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("Course_D");
+            entity.HasKey(e => e.RowId).HasName("PK_Course_D_1");
+
+            entity.ToTable("Course_D");
 
             entity.HasIndex(e => e.CourseId, "IX_Course_D");
-        });
-
-        modelBuilder.Entity<CourseM>(entity =>
-        {
-            entity.HasKey(e => e.CourseId).HasName("PK_course");
-
-            entity.ToTable("Course_M");
-
-            entity.Property(e => e.CourseName).HasMaxLength(25);
-            entity.Property(e => e.Instructor).HasMaxLength(25);
         });
 
         modelBuilder.Entity<Student>(entity =>

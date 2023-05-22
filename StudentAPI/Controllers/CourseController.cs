@@ -11,7 +11,7 @@ namespace StudentAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CourseController : ControllerBase
     {
         //連接上下文類別
@@ -52,6 +52,15 @@ namespace StudentAPI.Controllers
             {
                 return await conn.QueryAsync<CourseStudentDTO>(sql, new { courseId });
             }
+        }
+
+        //新增修課學生
+        [HttpPost]
+        public async Task<IActionResult> post(CourseD model)
+        {
+            await _db.AddRangeAsync(model);
+            await _db.SaveChangesAsync();
+            return NoContent();//回傳204
         }
 
     }
