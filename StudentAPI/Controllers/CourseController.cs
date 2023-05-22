@@ -47,7 +47,8 @@ namespace StudentAPI.Controllers
                                         FROM Course_D d
                                         LEFT JOIN Student s
                                         ON d.StudentId = s.StudentId
-                                        WHERE d.courseId = @courseId";
+                                        WHERE d.courseId = @courseId
+                                        ORDER BY d.StudentId";
             using (var conn = new SqlConnection(_connconfig.GetConnectionString("SchoolConn")))
             {
                 return await conn.QueryAsync<CourseStudentDTO>(sql, new { courseId });
