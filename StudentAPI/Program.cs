@@ -13,6 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//DB³s½u¦r¦ê
 builder.Services.AddDbContext<WebAPIContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("SchoolConn"));
